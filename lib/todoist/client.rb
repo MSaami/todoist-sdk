@@ -2,13 +2,15 @@
 
 require 'net/http'
 require 'uri'
+require 'json'
 
 module Todoist
+  # The Client class is responsible for making API requests to Todoist.
   class Client
     attr_reader :token
 
-    def initialize
-      @token = '1bed998575861864685f3a7571c9b338ec7f27c0'
+    def initialize(token)
+      @token = token
     end
 
     def get_request(api_url)
@@ -17,8 +19,13 @@ module Todoist
       request['Authorization'] = "Bearer #{@token}"
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
         response = http.request(request)
-        response.body
+        JSON.parse(response.body)
       end
+    end
+
+    def projects
+      @projects ||= Project.new(self)
+      @projects
     end
   end
 end

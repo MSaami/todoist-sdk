@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require_relative '../lib/todoist'
+
+require 'pry'
+
+# Add a reload! method to reload all files
+def reload!
+  Dir["#{__dir__}/../lib/**/*.rb"].each { |file| load file }
+end
+
+Pry.start(Todoist)

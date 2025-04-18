@@ -1,4 +1,4 @@
-Gem::Specifiction.new do |spec|
+Gem::Specification.new do |spec|
   spec.name = 'todoist'
   spec.version = '0.1.0'
   spec.author = ['Mehrdad Sami']
