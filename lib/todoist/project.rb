@@ -10,7 +10,23 @@ module Todoist
     end
 
     def all
-      @client.get_request(Todoist::Config::URLS[:projects])
+      response = @client.get_request(Todoist::Config::URLS[:projects])
+      OpenStruct.new(response)
+    end
+
+    # Add a new project to Todoist.
+    # @name [String] The name of the project. required.
+    # @params [Hash] Additional parameters for the project.
+    def add(name, params = {})
+      params = { name: name }.merge(params)
+      @client.post_request(Todoist::Config::URLS[:projects], params)
+    end
+
+    # Deletes a project with the specified ID
+    # @param id [String, Integer] The ID of the project to delete
+    # @return [nil, Hash] nil if successful, error hash if failed
+    def delete(id)
+      @client.delete_request(Todoist::Config::URLS[:delete_project].gsub(':project_id', id.to_s))
     end
   end
 end
