@@ -4,6 +4,9 @@ require 'net/http'
 require 'uri'
 require 'json'
 
+require 'todoist/project'
+require 'todoist/user'
+
 module Todoist
   # The Client class is responsible for making API requests to Todoist.
   class Client
@@ -26,6 +29,11 @@ module Todoist
     def projects
       @projects ||= Project.new(self)
       @projects
+    end
+
+    def user
+      @user ||= User.new(self)
+      @user
     end
   end
 end

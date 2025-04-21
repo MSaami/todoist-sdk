@@ -5,7 +5,8 @@ module Todoist
     BASE_URL = 'https://api.todoist.com/api/v1'
 
     URLS = {
-      projects: "#{BASE_URL}/projects"
+      projects: "#{BASE_URL}/projects",
+      user: "#{BASE_URL}/user"
     }.freeze
   end
 end
