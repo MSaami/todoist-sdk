@@ -26,7 +26,15 @@ module Todoist
     # @param id [String, Integer] The ID of the project to delete
     # @return [nil, Hash] nil if successful, error hash if failed
     def delete(id)
-      @client.delete_request(Todoist::Config::URLS[:delete_project].gsub(':project_id', id.to_s))
+      @client
+        .delete_request(Todoist::Config::URLS[:delete_project]
+          .gsub(':project_id', id.to_s))
+    end
+
+    def update(id, params = {})
+      @client
+        .post_request(Todoist::Config::URLS[:update_project]
+          .gsub(':project_id', id.to_s), params)
     end
   end
 end

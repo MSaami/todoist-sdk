@@ -7,7 +7,8 @@ module Todoist
     URLS = {
       projects: "#{BASE_URL}/projects",
       user: "#{BASE_URL}/user",
-      delete_project: "#{BASE_URL}/projects/:project_id"
+      delete_project: "#{BASE_URL}/projects/:project_id",
+      update_project: "#{BASE_URL}/projects/:project_id"
     }.freeze
   end
 end

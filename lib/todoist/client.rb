@@ -33,7 +33,7 @@ module Todoist
       request = Net::HTTP::Post.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       request['content-type'] = 'application/json'
-      request.body = params.to_json
+      request.set_form_data(params) if params.is_a?(Hash)
 
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
         response = http.request(request)
