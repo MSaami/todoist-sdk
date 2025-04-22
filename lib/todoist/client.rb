@@ -49,8 +49,7 @@ module Todoist
       request = Net::HTTP::Delete.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        response = http.request(request)
-        response.body.empty? ? nil : JSON.parse(response.body)
+        http.request(request)
       end
     end
 
