@@ -36,5 +36,11 @@ module Todoist
         .post_request(Todoist::Config::URLS[:update_project]
           .gsub(':project_id', id.to_s), params)
     end
+
+    def get(id)
+      response = @client
+                 .get_request(Todoist::Config::URLS[:get_project].gsub(':project_id', id.to_s))
+      OpenStruct.new(response)
+    end
   end
 end
