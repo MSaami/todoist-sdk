@@ -4,14 +4,13 @@ require 'todoist/config'
 
 module Todoist
   # The User class is responsible for managing user information in Todoist.
-  class User
+  class UserResource
     def initialize(client)
       @client = client
     end
 
     def info
-      response = @client.get_request(Todoist::Config::URLS[:user].to_s)
-      OpenStruct.new(response)
+      Todoist::Entities::User.new @client.get_request(Todoist::Config::URLS[:user].to_s)
     end
   end
 end

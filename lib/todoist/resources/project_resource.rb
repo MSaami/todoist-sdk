@@ -4,14 +4,13 @@ require 'todoist/config'
 
 module Todoist
   # The Project class is responsible for managing projects in Todoist.
-  class Project
+  class ProjectResource
     def initialize(client)
       @client = client
     end
 
     def all
-      response = @client.get_request(Todoist::Config::URLS[:projects])
-      OpenStruct.new(response)
+      Collection.new @client.get_request(Todoist::Config::URLS[:projects]), entity_class: Todoist::Entities::Project
     end
 
     # Add a new project to Todoist.
@@ -19,7 +18,7 @@ module Todoist
     # @params [Hash] Additional parameters for the project.
     def add(name, params = {})
       params = { name: name }.merge(params)
-      @client.post_request(Todoist::Config::URLS[:projects], params)
+      Entities::Project.new @client.post_request(Todoist::Config::URLS[:projects], params)
     end
 
     # Deletes a project with the specified ID
@@ -29,18 +28,19 @@ module Todoist
       @client
         .delete_request(Todoist::Config::URLS[:delete_project]
           .gsub(':project_id', id.to_s))
+      true
     end
 
     def update(id, params = {})
       @client
         .post_request(Todoist::Config::URLS[:update_project]
           .gsub(':project_id', id.to_s), params)
+      true
     end
 
-    def get(id)
-      response = @client
-                 .get_request(Todoist::Config::URLS[:get_project].gsub(':project_id', id.to_s))
-      OpenStruct.new(response)
+    def retrieve(id)
+      Entities::Project.new @client
+        .get_request(Todoist::Config::URLS[:get_project].gsub(':project_id', id.to_s))
     end
   end
 end
