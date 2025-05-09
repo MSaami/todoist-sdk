@@ -1,13 +1,17 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require_relative '../lib/todoist'
+require 'todoist'
 
-require 'pry'
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
 
-# Add a reload! method to reload all files
-def reload!
-  Dir["#{__dir__}/../lib/**/*.rb"].each { |file| load file }
-end
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+#
+#
+@client = Todoist::Client.new '1bed998575861864685f3a7571c9b338ec7f27c0'
 
-Pry.start(Todoist)
+require 'irb'
+IRB.start(__FILE__)
