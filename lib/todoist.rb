@@ -8,9 +8,10 @@ require 'todoist/client'
 require 'todoist/entities/entity'
 require 'todoist/entities/user'
 require 'todoist/entities/project'
+require 'todoist/version'
 
 require 'todoist/collection'
 
-# This is the main module for the Todoist API wrapper.
+# Todoist API wrapper
 module Todoist
 end

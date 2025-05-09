@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ostruct'
+
 module Todoist
   module Entities
     # The Entity class is a base class for all entities in the Todoist API.

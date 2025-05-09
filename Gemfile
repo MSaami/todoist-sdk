@@ -2,6 +2,4 @@ source 'https://rubygems.org'
 
 gemspec
 
-group :development do
-  gem 'pry'
-end
+gem 'minitest', '~> 5.0'
