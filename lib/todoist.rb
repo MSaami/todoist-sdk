@@ -9,7 +9,7 @@ require 'todoist/entities/entity'
 require 'todoist/entities/user'
 require 'todoist/entities/project'
 require 'todoist/version'
-
+require 'todoist/error'
 require 'todoist/collection'
 
 # Todoist API wrapper

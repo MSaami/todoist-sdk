@@ -4,7 +4,6 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-
 module Todoist
   # The Client class is responsible for making API requests to Todoist.
   class Client
@@ -21,7 +20,7 @@ module Todoist
       request['Authorization'] = "Bearer #{@token}"
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
         response = http.request(request)
-        JSON.parse(response.body)
+        handle_response(response)
       end
     end
 
@@ -31,11 +30,10 @@ module Todoist
       request = Net::HTTP::Post.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       request['content-type'] = 'application/json'
-      request.set_form_data(params) if params.is_a?(Hash)
-
+      request.body = params.to_json
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
         response = http.request(request)
-        JSON.parse(response.body)
+        handle_response(response)
       end
     end
 
@@ -47,7 +45,8 @@ module Todoist
       request = Net::HTTP::Delete.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        http.request(request)
+        response = http.request(request)
+        handle_response(response)
       end
     end
 
@@ -60,5 +59,17 @@ module Todoist
       @user ||= UserResource.new(self)
       @user
     end
+
+
+    private
+    def handle_response(response)
+      if response.is_a?(Net::HTTPSuccess)
+        JSON.parse(response.body)
+      else
+        raise Error.new(response.code.to_i, response.body)
+      end
+    end
+
   end
+
 end
