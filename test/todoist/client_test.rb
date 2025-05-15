@@ -19,15 +19,13 @@ class ClientTest < Minitest::Test
 
   def test_handle_response_raises_error_on_failure
     stub_request(:get, Todoist::Config::URLS[:projects])
-      .to_return(status: 401, body: "Unauthorized")
+      .to_return(status: 401, body: 'Unauthorized')
 
     error = assert_raises(Todoist::Error) do
       @client.get_request(Todoist::Config::URLS[:projects])
     end
 
     assert_equal 401, error.code
-    assert_equal "Unauthorized", error.message
+    assert_equal 'Unauthorized', error.message
   end
-
-
 end

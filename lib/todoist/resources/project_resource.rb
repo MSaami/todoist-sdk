@@ -32,10 +32,9 @@ module Todoist
     end
 
     def update(id, params = {})
-      @client
+      Entities::Project.new @client
         .post_request(Todoist::Config::URLS[:update_project]
           .gsub(':project_id', id.to_s), params)
-      true
     end
 
     def retrieve(id)

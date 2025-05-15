@@ -60,16 +60,13 @@ module Todoist
       @user
     end
 
-
     private
+
     def handle_response(response)
-      if response.is_a?(Net::HTTPSuccess)
-        JSON.parse(response.body)
-      else
-        raise Error.new(response.code.to_i, response.body)
-      end
+      raise Error.new(response.code.to_i, response.body) unless response.is_a?(Net::HTTPSuccess)
+      return if response.body.nil?
+
+      JSON.parse(response.body)
     end
-
   end
-
 end

@@ -1,4 +1,5 @@
 module Todoist
+  # The Collection class is responsible for managing a collection of entities.
   class Collection
     include Enumerable
 
