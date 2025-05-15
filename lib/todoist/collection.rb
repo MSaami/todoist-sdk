@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 module Todoist
   # The Collection class is responsible for managing a collection of entities.
   class Collection
     include Enumerable
 
-    attr_reader :data
+    attr_reader :data, :next_cursor
 
     def initialize(response, entity_class:)
       @data = response['results'].map { |item| entity_class.new(item) }
+      @next_cursor = response['next_cursor']
     end
 
     def each(&block)

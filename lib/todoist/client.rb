@@ -13,9 +13,13 @@ module Todoist
       @token = token
     end
 
-    # TODO: it should be extract to a dedicated class to work with network.
-    def get_request(api_url)
+    # Performs a GET request to the specified API URL with optional query parameters
+    # @param api_url [String] The URL to send the GET request to
+    # @param params [Hash] Optional query parameters to include in the request
+    # @return [Hash, nil] Parsed JSON response or nil if no content returned
+    def get_request(api_url, params = {})
       uri = URI(api_url)
+      uri.query = URI.encode_www_form(params) unless params.empty?
       request = Net::HTTP::Get.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|

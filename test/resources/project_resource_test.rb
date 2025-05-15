@@ -51,4 +51,15 @@ class ProjectResourceTest < Minitest::Test
     assert_instance_of Todoist::Entities::Project, project
     assert_equal 'Test Project', project.name
   end
+
+  def test_projects_pagination
+    stub_request(:get, Todoist::Config::URLS[:projects])
+      .with(query: { cursor: 'fake_cursor' })
+      .to_return(status: 200, body: File.read('test/fixtures/projects.json'))
+
+    projects = @client.projects.all(cursor: 'fake_cursor')
+
+    assert_equal 2, projects.count
+    assert_equal 'next_cursor_value', projects.next_cursor
+  end
 end

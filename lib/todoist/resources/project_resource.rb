@@ -9,8 +9,9 @@ module Todoist
       @client = client
     end
 
-    def all
-      Collection.new @client.get_request(Todoist::Config::URLS[:projects]), entity_class: Todoist::Entities::Project
+    def all(**params)
+      Collection.new @client.get_request(Todoist::Config::URLS[:projects], params),
+                     entity_class: Todoist::Entities::Project
     end
 
     # Add a new project to Todoist.
