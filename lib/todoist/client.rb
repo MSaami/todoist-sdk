@@ -41,8 +41,8 @@ module Todoist
       end
     end
 
-    def upload_request(file_path:)
-      uri = URI(Todoist::Config::URLS[:upload_file])
+    def upload_request(api_url, file_path:)
+      uri = URI(api_url)
       request = Net::HTTP::Post.new(uri)
       request['Authorization'] = "Bearer #{@token}"
       request.set_form([['file_name', File.open(file_path)]], 'multipart/form-data')
@@ -76,10 +76,16 @@ module Todoist
       @user
     end
 
+    def file
+      @file ||= FileResource.new(self)
+      @file
+    end
+
     private
 
     def handle_response(response)
       raise Error.new(response.code.to_i, response.body) unless response.is_a?(Net::HTTPSuccess)
+
       return if response.body.nil?
 
       JSON.parse(response.body)

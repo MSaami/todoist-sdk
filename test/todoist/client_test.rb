@@ -33,7 +33,7 @@ class ClientTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:upload_file])
       .to_return(status: 200, body: File.read('test/fixtures/upload.json'))
 
-    file = @client.upload_request(file_path: 'test/fixtures/image.jpg')
+    file = @client.upload_request(Todoist::Config::URLS[:upload_file], file_path: 'test/fixtures/image.jpg')
 
     assert_equal file['file_name'], 'image.jpg'
   end
