@@ -41,6 +41,18 @@ module Todoist
       end
     end
 
+    def upload_request(file_path:)
+      uri = URI(Todoist::Config::URLS[:upload_file])
+      request = Net::HTTP::Post.new(uri)
+      request['Authorization'] = "Bearer #{@token}"
+      request.set_form([['file_name', File.open(file_path)]], 'multipart/form-data')
+      Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+        respone = http.request(request)
+
+        handle_response(respone)
+      end
+    end
+
     # Performs a DELETE request to the specified API URL
     # @param api_url [String] The URL to send the DELETE request to
     # @return [Hash, nil] Parsed JSON response or nil if no content returned

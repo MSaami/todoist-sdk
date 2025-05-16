@@ -28,4 +28,13 @@ class ClientTest < Minitest::Test
     assert_equal 401, error.code
     assert_equal 'Unauthorized', error.message
   end
+
+  def test_upload_request
+    stub_request(:post, Todoist::Config::URLS[:upload_file])
+      .to_return(status: 200, body: File.read('test/fixtures/upload.json'))
+
+    file = @client.upload_request(file_path: 'test/fixtures/image.jpg')
+
+    assert_equal file['file_name'], 'image.jpg'
+  end
 end
