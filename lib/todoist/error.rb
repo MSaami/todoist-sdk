@@ -1,9 +1,7 @@
+# frozen_string_literal: true
+
 module Todoist
-  class Error < StandardError
-    attr_reader :code, :message
-    def initialize(code, message)
-      @code = code
-      @message = message
-    end
-  end
+  # The Error class is used to handle errors in the Todoist API.
+  class Error < StandardError; end
 end
+

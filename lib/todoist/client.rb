@@ -81,10 +81,15 @@ module Todoist
       @file
     end
 
+    def comment
+      @comment ||= CommentResource.new(self)
+      @comment
+    end
+
     private
 
     def handle_response(response)
-      raise Error.new(response.code.to_i, response.body) unless response.is_a?(Net::HTTPSuccess)
+      raise Error, response.body unless response.is_a?(Net::HTTPSuccess)
 
       return if response.body.nil?
 

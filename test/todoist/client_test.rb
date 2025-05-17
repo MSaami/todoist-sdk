@@ -25,7 +25,6 @@ class ClientTest < Minitest::Test
       @client.get_request(Todoist::Config::URLS[:projects])
     end
 
-    assert_equal 401, error.code
     assert_equal 'Unauthorized', error.message
   end
 
