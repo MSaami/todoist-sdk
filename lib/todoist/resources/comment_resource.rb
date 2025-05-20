@@ -28,6 +28,20 @@ module Todoist
       Entities::Comment.new(response)
     end
 
+    def delete(id:)
+      @client.delete_request(
+        Todoist::Config::URLS[:delete_comment].gsub(':comment_id', id.to_s)
+      )
+      true
+    end
+
+    def retrieve(id:)
+      response = @client.get_request(
+        Todoist::Config::URLS[:get_comment].gsub(':comment_id', id.to_s)
+      )
+      Entities::Comment.new(response)
+    end
+
     private
 
     def validate_task_id_or_project_id!(params)

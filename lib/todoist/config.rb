@@ -13,7 +13,9 @@ module Todoist
       upload_file: "#{BASE_URL}/uploads",
       delete_file: "#{BASE_URL}/uploads?file_url=:file_url",
       comment: "#{BASE_URL}/comments",
-      update_comment: "#{BASE_URL}/comments/:comment_id"
+      update_comment: "#{BASE_URL}/comments/:comment_id",
+      delete_comment: "#{BASE_URL}/comments/:comment_id",
+      get_comment: "#{BASE_URL}/comments/:comment_id"
     }.freeze
   end
 end

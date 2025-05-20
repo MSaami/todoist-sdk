@@ -45,4 +45,21 @@ class CommentResourceTest < Minitest::Test
     assert_instance_of Todoist::Entities::Comment, comment
     assert_equal comment.content, 'Note'
   end
+
+  def test_delete_comment
+    stub_request(:delete, Todoist::Config::URLS[:delete_comment]
+      .gsub(':comment_id', 'test_comment_id'))
+      .to_return(status: 204)
+
+    assert @client.comment.delete(id: 'test_comment_id')
+  end
+
+  def test_retrieve_comment
+    stub_request(:get, Todoist::Config::URLS[:get_comment].gsub(':comment_id', 'test_comment_id'))
+      .to_return(status: 200, body: File.read('test/fixtures/comment.json'))
+
+    comment = @client.comment.retrieve(id: 'test_comment_id')
+    assert_instance_of Todoist::Entities::Comment, comment
+    assert_equal comment.content, 'Note'
+  end
 end
