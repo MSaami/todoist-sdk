@@ -36,4 +36,13 @@ class CommentResourceTest < Minitest::Test
       @client.comment.all
     end
   end
+
+  def test_update_comment
+    stub_request(:post, Todoist::Config::URLS[:update_comment].gsub(':comment_id', 'test_comment_id'))
+      .to_return(status: 200, body: File.read('test/fixtures/comment.json'))
+
+    comment = @client.comment.update(id: 'test_comment_id', content: 'Note')
+    assert_instance_of Todoist::Entities::Comment, comment
+    assert_equal comment.content, 'Note'
+  end
 end

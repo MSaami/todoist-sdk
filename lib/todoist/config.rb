@@ -12,7 +12,8 @@ module Todoist
       get_project: "#{BASE_URL}/projects/:project_id",
       upload_file: "#{BASE_URL}/uploads",
       delete_file: "#{BASE_URL}/uploads?file_url=:file_url",
-      comment: "#{BASE_URL}/comments"
+      comment: "#{BASE_URL}/comments",
+      update_comment: "#{BASE_URL}/comments/:comment_id"
     }.freeze
   end
 end

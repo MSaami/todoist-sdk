@@ -21,6 +21,13 @@ module Todoist
       Collection.new(response, entity_class: Entities::Comment)
     end
 
+    def update(id:, **params)
+      response = @client.post_request(
+        Todoist::Config::URLS[:update_comment].gsub(':comment_id', id.to_s), params
+      )
+      Entities::Comment.new(response)
+    end
+
     private
 
     def validate_task_id_or_project_id!(params)
