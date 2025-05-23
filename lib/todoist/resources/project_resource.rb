@@ -4,11 +4,7 @@ require 'todoist/config'
 
 module Todoist
   # The Project class is responsible for managing projects in Todoist.
-  class ProjectResource
-    def initialize(client)
-      @client = client
-    end
-
+  class ProjectResource < BaseResource
     def all(**params)
       Collection.new @client.get_request(Todoist::Config::URLS[:projects], params),
                      entity_class: Todoist::Entities::Project

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'todoist/resources/base_resource'
 require 'todoist/resources/user_resource'
 require 'todoist/resources/project_resource'
 require 'todoist/resources/file_resource'

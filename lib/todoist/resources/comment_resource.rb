@@ -2,11 +2,7 @@
 
 module Todoist
   # The CommentResource class is responsible for managing comments in Todoist.
-  class CommentResource
-    def initialize(client)
-      @client = client
-    end
-
+  class CommentResource < BaseResource
     def add(content:, **params)
       validate_task_id_or_project_id!(params)
       params = { content: content }.merge(params)

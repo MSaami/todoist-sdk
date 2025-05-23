@@ -2,11 +2,7 @@
 
 module Todoist
   # The FileResource class is responsible for managing file uploads in Todoist.
-  class FileResource
-    def initialize(client)
-      @client = client
-    end
-
+  class FileResource < BaseResource
     def delete(file_url:)
       @client.delete_request(Todoist::Config::URLS[:delete_file].gsub(':file_url', file_url))
       true
