@@ -11,7 +11,7 @@ require 'todoist'
 # Pry.start
 #
 #
-@client = Todoist::Client.new '1bed998575861864685f3a7571c9b338ec7f27c0'
+#@client = Todoist::Client.new 'your_api_token'
 
 require 'irb'
 IRB.start(__FILE__)
