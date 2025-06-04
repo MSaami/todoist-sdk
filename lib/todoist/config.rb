@@ -15,7 +15,11 @@ module Todoist
       comment: "#{BASE_URL}/comments",
       update_comment: "#{BASE_URL}/comments/:comment_id",
       delete_comment: "#{BASE_URL}/comments/:comment_id",
-      get_comment: "#{BASE_URL}/comments/:comment_id"
+      get_comment: "#{BASE_URL}/comments/:comment_id",
+      task: "#{BASE_URL}/tasks",
+      update_task: "#{BASE_URL}/tasks/:task_id",
+      delete_task: "#{BASE_URL}/tasks/:task_id",
+      get_task: "#{BASE_URL}/tasks/:task_id"
     }.freeze
   end
 end
