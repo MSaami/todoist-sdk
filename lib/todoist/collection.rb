@@ -7,8 +7,8 @@ module Todoist
 
     attr_reader :data, :next_cursor
 
-    def initialize(response, entity_class:)
-      @data = response['results'].map { |item| entity_class.new(item) }
+    def initialize(response, entity_class:, main_key: 'results')
+      @data = response[main_key].map { |item| entity_class.new(item) }
       @next_cursor = response['next_cursor']
     end
 

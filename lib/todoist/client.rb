@@ -68,27 +68,22 @@ module Todoist
 
     def projects
       @projects ||= ProjectResource.new(self)
-      @projects
     end
 
     def user
       @user ||= UserResource.new(self)
-      @user
     end
 
     def file
       @file ||= FileResource.new(self)
-      @file
     end
 
     def comment
       @comment ||= CommentResource.new(self)
-      @comment
     end
 
     def task
       @task ||= TaskResource.new(self)
-      @task
     end
 
     private

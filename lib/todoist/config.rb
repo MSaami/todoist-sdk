@@ -19,7 +19,13 @@ module Todoist
       task: "#{BASE_URL}/tasks",
       update_task: "#{BASE_URL}/tasks/:task_id",
       delete_task: "#{BASE_URL}/tasks/:task_id",
-      get_task: "#{BASE_URL}/tasks/:task_id"
+      get_task: "#{BASE_URL}/tasks/:task_id",
+      search_task: "#{BASE_URL}/tasks/filter",
+      complete_task: "#{BASE_URL}/tasks/:task_id/close",
+      uncomplete_task: "#{BASE_URL}/tasks/:task_id/reopen",
+      move_task: "#{BASE_URL}/tasks/:task_id/move",
+      completed_by_date: "#{BASE_URL}/tasks/completed/by_completion_date",
+      completed_by_due_date: "#{BASE_URL}/tasks/completed/by_due_date"
     }.freeze
   end
 end
