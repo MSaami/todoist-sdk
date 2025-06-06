@@ -12,28 +12,28 @@ module Todoist
 
     def all(**params)
       validate_task_id_or_project_id!(params)
-      response = @client.get_request(Todoist::Config::URLS[:comment], params)
+      response = @client.get_request(url(:comment), params)
 
       Collection.new(response, entity_class: Entities::Comment)
     end
 
     def update(id:, **params)
       response = @client.post_request(
-        Todoist::Config::URLS[:update_comment].gsub(':comment_id', id.to_s), params
+        url(:update_comment).gsub(':comment_id', id.to_s), params
       )
       Entities::Comment.new(response)
     end
 
     def delete(id:)
       @client.delete_request(
-        Todoist::Config::URLS[:delete_comment].gsub(':comment_id', id.to_s)
+        url(:delete_comment).gsub(':comment_id', id.to_s)
       )
       true
     end
 
     def retrieve(id:)
       response = @client.get_request(
-        Todoist::Config::URLS[:get_comment].gsub(':comment_id', id.to_s)
+        url(:get_comment).gsub(':comment_id', id.to_s)
       )
       Entities::Comment.new(response)
     end
