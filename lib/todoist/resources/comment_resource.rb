@@ -7,7 +7,7 @@ module Todoist
       validate_task_id_or_project_id!(params)
       params = { content: content }.merge(params)
 
-      Entities::Comment.new @client.post_request(Todoist::Config::URLS[:comment], params)
+      Entities::Comment.new @client.post_request(url(:comment), params)
     end
 
     def all(**params)
