@@ -8,7 +8,7 @@ module Todoist
       Entities::Task.new @client.post_request(url(:task), params)
     end
 
-    def list(**params)
+    def all(**params)
       Collection.new @client.get_request(url(:task), params),
                      entity_class: Todoist::Entities::Task
     end

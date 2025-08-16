@@ -13,11 +13,11 @@ class TaskResourceTest < Minitest::Test
     assert_equal 'Test Task', task.content
   end
 
-  def test_list_task
+  def test_all_task
     stub_request(:get, Todoist::Config::URLS[:task])
       .to_return(status: 200, body: File.read('test/fixtures/tasks.json'))
 
-    tasks = @client.task.list
+    tasks = @client.task.all
 
     assert_instance_of Todoist::Collection, tasks
     assert_equal 2, tasks.count

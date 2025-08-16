@@ -18,7 +18,7 @@ class FileResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:upload_file])
       .to_return(status: 200, body: File.read('test/fixtures/upload.json'))
 
-    file = @client.file.upload(file_path: 'test/fixtures/image.jpg')
+    file = @client.file.add(file_path: 'test/fixtures/image.jpg')
     assert_instance_of Todoist::Entities::File, file
     assert_equal file.file_name, 'image.jpg'
   end

@@ -8,7 +8,7 @@ module Todoist
       true
     end
 
-    def upload(file_path:)
+    def add(file_path:)
       Entities::File.new @client.upload_request(url(:upload_file), file_path: file_path)
     end
   end
