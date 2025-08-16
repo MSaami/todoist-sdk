@@ -9,7 +9,7 @@ class ProjectResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:projects])
       .to_return(status: 200, body: File.read('test/fixtures/project.json'))
 
-    project = @client.projects.add('Test Project')
+    project = @client.projects.add(name: 'Test Project')
     assert_equal 'Test Project', project.name
   end
 
@@ -30,7 +30,7 @@ class ProjectResourceTest < Minitest::Test
     stub_request(:delete, Todoist::Config::URLS[:delete_project].gsub(':project_id', project_id))
       .to_return(status: 204)
 
-    assert @client.projects.delete(project_id)
+    assert @client.projects.delete(id: project_id)
   end
 
   def test_update_project
@@ -38,7 +38,7 @@ class ProjectResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:update_project].gsub(':project_id', project_id))
       .to_return(status: 200, body: File.read('test/fixtures/project.json'))
 
-    project = @client.projects.update(project_id, name: 'Test Project')
+    project = @client.projects.update(id: project_id, name: 'Test Project')
     assert_instance_of Todoist::Entities::Project, project
   end
 
@@ -47,7 +47,7 @@ class ProjectResourceTest < Minitest::Test
     stub_request(:get, Todoist::Config::URLS[:get_project].gsub(':project_id', project_id))
       .to_return(status: 200, body: File.read('test/fixtures/project.json'))
 
-    project = @client.projects.retrieve(project_id)
+    project = @client.projects.retrieve(id: project_id)
     assert_instance_of Todoist::Entities::Project, project
     assert_equal 'Test Project', project.name
   end

@@ -3,7 +3,7 @@
 module Todoist
   # This class provides methods to interact with the Task resource in the Todoist API.
   class TaskResource < BaseResource
-    def add(content, **params)
+    def add(content:, **params)
       params = { content: content }.merge(params)
       Entities::Task.new @client.post_request(url(:task), params)
     end
@@ -13,32 +13,32 @@ module Todoist
                      entity_class: Todoist::Entities::Task
     end
 
-    def update(task_id, **params)
+    def update(task_id:, **params)
       Entities::Task.new @client.post_request(
         url(:update_task).gsub(':task_id', task_id), params
       )
     end
 
-    def delete(task_id)
+    def delete(task_id:)
       @client.delete_request(url(:delete_task).gsub(':task_id', task_id))
       true
     end
 
-    def retrieve(task_id)
+    def retrieve(task_id:)
       Entities::Task.new @client.get_request(url(:get_task).gsub(':task_id', task_id))
     end
 
-    def search(query)
+    def search(query:)
       response = @client.get_request(url(:search_task), query: query)
       Collection.new(response, entity_class: Entities::Task)
     end
 
-    def complete(task_id)
+    def complete(task_id:)
       @client.post_request(url(:complete_task).gsub(':task_id', task_id), {})
       true
     end
 
-    def uncomplete(task_id)
+    def uncomplete(task_id:)
       @client.post_request(url(:uncomplete_task).gsub(':task_id', task_id), {})
       true
     end

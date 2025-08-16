@@ -9,7 +9,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:task])
       .to_return(status: 200, body: File.read('test/fixtures/task.json'))
 
-    task = @client.task.add('Test Task')
+    task = @client.task.add(content: 'Test Task')
     assert_equal 'Test Task', task.content
   end
 
@@ -28,7 +28,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:update_task].gsub(':task_id', task_id))
       .to_return(status: 200, body: File.read('test/fixtures/task.json'))
 
-    task = @client.task.update(task_id, content: 'Test Task')
+    task = @client.task.update(task_id: task_id, content: 'Test Task')
     assert_equal 'Test Task', task.content
   end
 
@@ -37,7 +37,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:delete, Todoist::Config::URLS[:delete_task].gsub(':task_id', task_id))
       .to_return(status: 204)
 
-    assert @client.task.delete(task_id)
+    assert @client.task.delete(task_id: task_id)
   end
 
   def test_retrieve_task
@@ -45,7 +45,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:get, Todoist::Config::URLS[:get_task].gsub(':task_id', task_id))
       .to_return(status: 200, body: File.read('test/fixtures/task.json'))
 
-    task = @client.task.retrieve(task_id)
+    task = @client.task.retrieve(task_id: task_id)
     assert_equal 'Test Task', task.content
   end
 
@@ -53,7 +53,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:get, Todoist::Config::URLS[:search_task] + '?query=search: test')
       .to_return(status: 200, body: File.read('test/fixtures/tasks.json'))
 
-    tasks = @client.task.search('search: test')
+    tasks = @client.task.search(query: 'search: test')
     assert_equal 2, tasks.count
   end
 
@@ -62,7 +62,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:complete_task].gsub(':task_id', task_id))
       .to_return(status: 204)
 
-    assert @client.task.complete(task_id)
+    assert @client.task.complete(task_id: task_id)
   end
 
   def test_uncomplete_task
@@ -70,7 +70,7 @@ class TaskResourceTest < Minitest::Test
     stub_request(:post, Todoist::Config::URLS[:uncomplete_task].gsub(':task_id', task_id))
       .to_return(status: 204)
 
-    assert @client.task.uncomplete(task_id)
+    assert @client.task.uncomplete(task_id: task_id)
   end
 
   def test_move_task
