@@ -86,6 +86,10 @@ module Todoist
       @task ||= TaskResource.new(self)
     end
 
+    def section
+      @section ||= SectionResource.new(self)
+    end
+
     private
 
     def handle_response(response)

@@ -1,0 +1,30 @@
+{
+    "results": [
+        {
+            "id": "6Jf8VQXxpwv56VQ7",
+            "name": "Groceries",
+            "project_id": "9Bw8VQXxpwv56ZY2",
+            "section_order": 1,
+            "is_collapsed": false,
+            "user_id": "2671355",
+            "is_deleted": false,
+            "is_archived": false,
+            "archived_at": null,
+            "added_at": "2019-10-07T07:09:27.000000Z",
+            "updated_at": "2019-10-07T07:09:27.000000Z"
+        },
+        {
+            "id": "6Jf8VQXxpwv56VQ7",
+            "name": "Groceries 2",
+            "project_id": "9Bw8VQXxpwv56ZY2",
+            "section_order": 1,
+            "is_collapsed": false,
+            "user_id": "2671355",
+            "is_deleted": false,
+            "is_archived": false,
+            "archived_at": null,
+            "added_at": "2019-10-07T07:09:27.000000Z",
+            "updated_at": "2019-10-07T07:09:27.000000Z"
+        }
+    ]
+}

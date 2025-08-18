@@ -25,7 +25,11 @@ module Todoist
       uncomplete_task: "#{BASE_URL}/tasks/:task_id/reopen",
       move_task: "#{BASE_URL}/tasks/:task_id/move",
       completed_by_date: "#{BASE_URL}/tasks/completed/by_completion_date",
-      completed_by_due_date: "#{BASE_URL}/tasks/completed/by_due_date"
+      completed_by_due_date: "#{BASE_URL}/tasks/completed/by_due_date",
+      section: "#{BASE_URL}/sections",
+      get_section: "#{BASE_URL}/sections/:section_id",
+      update_section: "#{BASE_URL}/sections/:section_id",
+      delete_section: "#{BASE_URL}/sections/:section_id"
     }.freeze
   end
 end
