@@ -24,28 +24,28 @@ class TaskResourceTest < Minitest::Test
   end
 
   def test_update_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:post, Todoist::Config::URLS[:update_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:post, Todoist::Config::URLS[:update_task].gsub(':id', id))
       .to_return(status: 200, body: File.read('test/fixtures/task.json'))
 
-    task = @client.task.update(task_id: task_id, content: 'Test Task')
+    task = @client.task.update(id: id, content: 'Test Task')
     assert_equal 'Test Task', task.content
   end
 
   def test_delete_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:delete, Todoist::Config::URLS[:delete_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:delete, Todoist::Config::URLS[:delete_task].gsub(':id', id))
       .to_return(status: 204)
 
-    assert @client.task.delete(task_id: task_id)
+    assert @client.task.delete(id: id)
   end
 
   def test_retrieve_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:get, Todoist::Config::URLS[:get_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:get, Todoist::Config::URLS[:get_task].gsub(':id', id))
       .to_return(status: 200, body: File.read('test/fixtures/task.json'))
 
-    task = @client.task.retrieve(task_id: task_id)
+    task = @client.task.retrieve(id: id)
     assert_equal 'Test Task', task.content
   end
 
@@ -58,27 +58,27 @@ class TaskResourceTest < Minitest::Test
   end
 
   def test_complete_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:post, Todoist::Config::URLS[:complete_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:post, Todoist::Config::URLS[:complete_task].gsub(':id', id))
       .to_return(status: 204)
 
-    assert @client.task.complete(task_id: task_id)
+    assert @client.task.complete(id: id)
   end
 
   def test_uncomplete_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:post, Todoist::Config::URLS[:uncomplete_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:post, Todoist::Config::URLS[:uncomplete_task].gsub(':id', id))
       .to_return(status: 204)
 
-    assert @client.task.uncomplete(task_id: task_id)
+    assert @client.task.uncomplete(id: id)
   end
 
   def test_move_task
-    task_id = '6X7rM8997g3RQmvh'
-    stub_request(:post, Todoist::Config::URLS[:move_task].gsub(':task_id', task_id))
+    id = '6X7rM8997g3RQmvh'
+    stub_request(:post, Todoist::Config::URLS[:move_task].gsub(':id', id))
       .to_return(status: 204)
 
-    assert @client.task.move(task_id: task_id, project_id: '1234567890')
+    assert @client.task.move(id: id, project_id: '1234567890')
   end
 
 

@@ -13,19 +13,19 @@ module Todoist
                      entity_class: Todoist::Entities::Task
     end
 
-    def update(task_id:, **params)
+    def update(id:, **params)
       Entities::Task.new @client.post_request(
-        url(:update_task).gsub(':task_id', task_id), params
+        url(:update_task).gsub(':id', id), params
       )
     end
 
-    def delete(task_id:)
-      @client.delete_request(url(:delete_task).gsub(':task_id', task_id))
+    def delete(id:)
+      @client.delete_request(url(:delete_task).gsub(':id', id))
       true
     end
 
-    def retrieve(task_id:)
-      Entities::Task.new @client.get_request(url(:get_task).gsub(':task_id', task_id))
+    def retrieve(id:)
+      Entities::Task.new @client.get_request(url(:get_task).gsub(':id', id))
     end
 
     def search(query:)
@@ -33,18 +33,18 @@ module Todoist
       Collection.new(response, entity_class: Entities::Task)
     end
 
-    def complete(task_id:)
-      @client.post_request(url(:complete_task).gsub(':task_id', task_id), {})
+    def complete(id:)
+      @client.post_request(url(:complete_task).gsub(':id', id), {})
       true
     end
 
-    def uncomplete(task_id:)
-      @client.post_request(url(:uncomplete_task).gsub(':task_id', task_id), {})
+    def uncomplete(id:)
+      @client.post_request(url(:uncomplete_task).gsub(':id', id), {})
       true
     end
 
-    def move(task_id:, project_id:)
-      @client.post_request(url(:move_task).gsub(':task_id', task_id), { project_id: project_id })
+    def move(id:, project_id:)
+      @client.post_request(url(:move_task).gsub(':id', id), { project_id: project_id })
       true
     end
 
