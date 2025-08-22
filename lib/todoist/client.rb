@@ -90,6 +90,10 @@ module Todoist
       @section ||= SectionResource.new(self)
     end
 
+    def label
+      @label ||= LabelResource.new(self)
+    end
+
     private
 
     def handle_response(response)

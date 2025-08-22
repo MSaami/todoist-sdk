@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Refactor this file to use a more structured approach for managing URLs and endpoints.
 module Todoist
   class Config
     BASE_URL = 'https://api.todoist.com/api/v1'
@@ -29,7 +30,11 @@ module Todoist
       section: "#{BASE_URL}/sections",
       get_section: "#{BASE_URL}/sections/:section_id",
       update_section: "#{BASE_URL}/sections/:section_id",
-      delete_section: "#{BASE_URL}/sections/:section_id"
+      delete_section: "#{BASE_URL}/sections/:section_id",
+      labels: "#{BASE_URL}/labels",
+      delete_label: "#{BASE_URL}/labels/:label_id",
+      update_label: "#{BASE_URL}/labels/:label_id",
+      get_label: "#{BASE_URL}/labels/:label_id"
     }.freeze
   end
 end

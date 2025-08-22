@@ -2,7 +2,7 @@
 
 module Todoist
   module Entities
-    class Project < Entity
+    class Label < Entity
     end
   end
 end
