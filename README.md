@@ -133,8 +133,21 @@ updated_task = client.task.update(
 task = client.task.retrieve(id: '123456789')
 
 # Search tasks
-search_results = client.task.search(query: 'shopping')
+search_results = client.task.search(query: 'search: shopping')
+search_results = client.task.search(query: 'date: tom')
+search_results = client.task.search(query: 'no date')
+search_results = client.task.search(query: 'deadline: today')
+search_results = client.task.search(query: 'p1')
+search_results = client.task.search(query: '@email')
+search_results = client.task.search(query: '#work')
+search_results = client.task.search(query: '/Meetings')
+search_results = client.task.search(query: 'created: Jan 3 2023')
+search_results = client.task.search(query: '(P1 | P2) & 14 days')
+```
 
+**Note:** The search method accepts any filters that Todoist supports. Check the [Todoist filter documentation](https://www.todoist.com/help/articles/introduction-to-filters-V98wIH#h_01HBBMVW64QWWNYWFRQC37B3WY) for all available filter options.
+
+```ruby
 # Complete a task
 client.task.complete(id: task.id)
 
@@ -422,7 +435,7 @@ Development dependencies:
 ### Development Setup
 
 ```bash
-$ git clone https://github.com/yourusername/todoist-sdk.git
+$ git clone https://github.com/msaami/todoist-sdk.git
 $ cd todoist-sdk
 $ bundle install
 $ bundle exec rake test
@@ -449,3 +462,4 @@ This gem is available as open source under the terms of the [MIT License](https:
 ---
 
 Built with ❤️ for the Ruby community by [Mehrdad Sami](mailto:mehrdadsaami@gmail.com)
+
