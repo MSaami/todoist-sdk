@@ -47,9 +47,9 @@ module Todoist
       request['Authorization'] = "Bearer #{@token}"
       request.set_form([['file_name', File.open(file_path)]], 'multipart/form-data')
       Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        respone = http.request(request)
+        response = http.request(request)
 
-        handle_response(respone)
+        handle_response(response)
       end
     end
 

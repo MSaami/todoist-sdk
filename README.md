@@ -31,7 +31,7 @@ A comprehensive Ruby SDK for the [Todoist API](https://developer.todoist.com/res
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'todoist'
+gem 'todoist-sdk'
 ```
 
 And then execute:
@@ -43,7 +43,7 @@ $ bundle install
 Or install it yourself as:
 
 ```bash
-$ gem install todoist
+$ gem install todoist-sdk
 ```
 
 ## Quick Start

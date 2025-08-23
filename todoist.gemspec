@@ -1,10 +1,21 @@
+require_relative 'lib/todoist/version'
+
 Gem::Specification.new do |spec|
-  spec.name = 'todoist'
-  spec.version = '0.1.0'
-  spec.author = ['Mehrdad Sami']
+  spec.name = 'todoist-sdk'
+  spec.version = Todoist::VERSION
+  spec.authors = ['Mehrdad Sami']
   spec.email = ['mehrdadsaami@gmail.com']
 
-  spec.summary = 'The SDK for todoist'
+  spec.summary = 'A comprehensive Ruby SDK for the Todoist API'
+  spec.description = 'A Ruby SDK providing an intuitive interface to interact with Todoist\'s task management API, including support for tasks, projects, labels, comments, sections, and file uploads.'
+  spec.homepage = 'https://github.com/msaami/todoist-sdk'
+  
+  spec.metadata = {
+    'bug_tracker_uri' => 'https://github.com/msaami/todoist-sdk/issues',
+    'changelog_uri' => 'https://github.com/msaami/todoist-sdk/blob/main/CHANGELOG.md',
+    'documentation_uri' => 'https://github.com/msaami/todoist-sdk',
+    'source_code_uri' => 'https://github.com/msaami/todoist-sdk'
+  }
 
   spec.license = 'MIT'
 
